@@ -3,6 +3,10 @@ Brew a perfect cup of coffee from iOS and Android apps using Xamarin, Azure IoT 
 
 [Insert Video]
 
+# Build Your Own
+Interested in building your own? Download the completed source for 
+
+## Architecture Overview
 ### Mobile Apps
 SmartCoffee brings control over your coffee maker directly to you, wherever you are. To accomplish this, we built mobile apps for iOS and Android using Xamarin, which allows us to build native mobile apps for iOS, Android, and Windows using C#. Xamarin allows us to share significant amounts of our code across multiple platforms, while still maintaining 100% access to the underlying platform APIs and building native user interfaces with iOS and Android designers. SmartCoffee utilizes Xamarin.Forms to take this a step further, allowing us to build native user interfaces for iOS, Android, and Windows from a single, shared C# or XAML codebase.
 
@@ -38,9 +42,6 @@ A Raspberry Pi, acting as a "field gateway" device, receives messages sent to th
 
 ### Microsoft Cognitive Services
 What is Microsoft Cognitive Services? How do the mobile apps utilize it. Specifically what is Bing Speech API. How do we utilize it?
-
-# Build Your Own
-Interested in building your own? Download the completed source for 
 
 # License
 Copyright (c) 2016 Pierce Boggan
