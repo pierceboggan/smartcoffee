@@ -104,7 +104,6 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GifImageView.cs" />
-    <Compile Include="Speech\AudioRecorderService.cs" />
     <Compile Include="Speech\AudioRecorderService2.cs" />
     <Compile Include="MainApplication.cs" />
   </ItemGroup>
