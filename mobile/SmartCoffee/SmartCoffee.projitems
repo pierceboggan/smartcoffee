@@ -9,18 +9,24 @@
     <Import_RootNamespace>SmartCoffee</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)SmartCoffee.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SmartCoffeeService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BaseViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SmartCoffeeViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SmartCoffeePage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)GifImageView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View Models\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View Models\SmartCoffeeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\SmartCoffeePage.xaml.cs">
       <DependentUpon>SmartCoffeePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)GifImageView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SmartCoffeeService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SmartCoffee.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)SmartCoffeePage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\SmartCoffeePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)View Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
   </ItemGroup>
 </Project>
