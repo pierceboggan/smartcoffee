@@ -3,7 +3,7 @@ Brew a perfect cup of coffee from iOS and Android apps using Xamarin, Azure IoT 
 
 [Insert Video]
 
-# Build Your Own
+## Build Your Own
 Interested in building your own? Download the completed source for 
 
 ## Architecture Overview
