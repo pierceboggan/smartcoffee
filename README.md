@@ -31,7 +31,9 @@ SmartCoffee uses the Raspberry Pi as a "field gateway" (described later) that ac
 ### Azure IoT Hub
 Azure IoT Hub allows us to connect, monitor, and control our smart devices from anywhere. SmartCoffee uses Azure IoT Hub to make our coffee maker accessible from anywhere in the world with an internet connection, regardless of physical locations. In addition, Azure IoT Hub allows us to configure identities for each of our smart devices and provides per-device security mechanisms, so we can ensure that our messages are confidential and tamperproof. We can also collect device telemetry, giving us valuable insight the data our IoT solutions may be collecting.
 
-[Diagram]
+<p align="center">
+<img align="center" src="https://github.com/Azure/azure-content/blob/master/articles/iot-hub/media/iot-hub-what-is-iot-hub/hubarchitecture.png?raw=true">
+</p>
 
 The SmartCoffee app sends cloud-to-device messages to IoT Hub. Just like any message, we must specify a recipient (our unique identifier for our smart coffee maker) and a body (the action for the device to take). Azure IoT Hub receives that message and forwards it to correct device, based on unique identifier. SmartCoffee utilizes the concept of a "[field gateway](https://azure.microsoft.com/en-us/documentation/articles/iot-hub-guidance/#field-gateways)" (in this case a Raspberry Pi 3) which acts as a communication broker between Azure IoT Hub and our coffee maker. 
 
