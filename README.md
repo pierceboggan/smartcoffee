@@ -35,11 +35,15 @@ Azure IoT Hub allows us to connect, monitor, and control our smart devices from 
 
 The SmartCoffee app sends cloud-to-device messages to IoT Hub. Just like any message, we must specify a recipient (our unique identifier for our smart coffee maker) and a body (the action for the device to take). Azure IoT Hub receives that message and forwards it to correct device, based on unique identifier. SmartCoffee utilizes the concept of a "[field gateway](https://azure.microsoft.com/en-us/documentation/articles/iot-hub-guidance/#field-gateways)" (in this case a Raspberry Pi 3) which acts as a communication broker between Azure IoT Hub and our coffee maker. 
 
+[Code]
+
 When the Raspberry Pi receives a cloud-to-device message from Azure IoT Hub, it checks the body of the message to see what action should be taken. For example, if the message contains "turn coffee on", the Raspberry Pi supplies power to the correct GPIO pins to power the coffee maker and begin the brewing process. If the message contains "turn coffee off", the Raspberry Pi reduces the power to the coffe maker to halt the brewing process. The Raspberry Pi can also send device-to-cloud messages to report back device telemetry, such as the current state of the coffee maker.
+
+[Code]
 
 We recently utilized Azure and Xamarin to build MyDriving, an [open-source mobile application for iOS, Android, and Windows](https://azure.microsoft.com/en-us/campaigns/mydriving/) that collects car telemetry data from an OBD-II reader in the car, and reports that data to the cloud to gain valuable insights on routes and driving patterns. 
 
-[![](https://www.youtube.com/watch?v=S7sSz556oKk/0.jpg)](http://www.youtube.com/watch?v=S7sSz556oKk "MyDriving IoT & Xamarin Reference App")
+[![](https://img.youtube.com/vi/S7sSz556oKk/0.jpg)](https://www.youtube.com/watch?v=S7sSz556oKk)
 
 ### Microsoft Cognitive Services
 What is Microsoft Cognitive Services? How do the mobile apps utilize it. Specifically what is Bing Speech API. How do we utilize it?
