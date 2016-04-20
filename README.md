@@ -50,7 +50,9 @@ We recently utilized Azure and Xamarin to build MyDriving, an [open-source mobil
 </p>
 
 ### Microsoft Cognitive Services
-What is Microsoft Cognitive Services? How do the mobile apps utilize it. Specifically what is Bing Speech API. How do we utilize it?
+[Microsoft Cognitive Services](https://www.microsoft.com/cognitive-services) provides a set of APIs that makes difficult things, like speech and emotion recognition, very easy to accomplish in just a few lines of code. These APIs work across all platforms, and because they are based on machine learning, continue to improve over time.
+
+SmartCoffee the [Bing Speech API](https://www.microsoft.com/cognitive-services/en-us/speech-api), one of the 20+ APIs exposed via Microsoft Cognitive Services to recognize speech input from an end user and convert it into an actionable text sequence. For example, when a user says "start making coffee", SmartCoffee sends this text to Microsoft Cognitive Services which converts the speech to text and sends back a JSON response containing the text spoken, as well as a confidence score. If the user spoke an actionable text sequence, SmartCoffee sends this message to Azure IoT Hub for processing by the coffee maker.
 
 ## License
 Copyright (c) 2016 Pierce Boggan
