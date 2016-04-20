@@ -35,11 +35,39 @@ Azure IoT Hub allows us to connect, monitor, and control our smart devices from 
 
 The SmartCoffee app sends cloud-to-device messages to IoT Hub. Just like any message, we must specify a recipient (our unique identifier for our smart coffee maker) and a body (the action for the device to take). Azure IoT Hub receives that message and forwards it to correct device, based on unique identifier. SmartCoffee utilizes the concept of a "[field gateway](https://azure.microsoft.com/en-us/documentation/articles/iot-hub-guidance/#field-gateways)" (in this case a Raspberry Pi 3) which acts as a communication broker between Azure IoT Hub and our coffee maker. 
 
-[Code]
+```csharp
+public async Task SendMessageToDevice(string messageToDevice)
+{
+   var sender = new SenderLink(session, "sender-link", "/messages/devicebound");
+   
+   var message = new Message(System.Text.Encoding.UTF8.GetBytes(messageToDevice));
+   message.Properties = new Properties();
+   message.Properties.To = BuzzerDeviceTo;
+   message.Properties.MessageId = Guid.NewGuid().ToString();
+   message.ApplicationProperties = new ApplicationProperties();
+   message.ApplicationProperties["iothub-ack"] = "full";
+
+   await sender.SendAsync(message);
+   await sender.CloseAsync();
+}
+```
 
 When the Raspberry Pi receives a cloud-to-device message from Azure IoT Hub, it checks the body of the message to see what action should be taken. For example, if the message contains "turn coffee on", the Raspberry Pi supplies power to the correct GPIO pins to power the coffee maker and begin the brewing process. If the message contains "turn coffee off", the Raspberry Pi reduces the power to the coffe maker to halt the brewing process. The Raspberry Pi can also send device-to-cloud messages to report back device telemetry, such as the current state of the coffee maker.
 
-[Code]
+```csharp
+var receivedMessage = await deviceClient.ReceiveAsync();
+if (receivedMessage != null)
+{
+     var message = Encoding.UTF8.GetString(receivedMessage.GetBytes());
+     if (message.ToLower().Contains("turn coffee maker on")) {
+       ToggleCoffeeMakerRelay();
+     }
+     else if (message.ToLower().Contains("turn coffee maker off")) {
+       ToggleCoffeeMakerRelay();
+     }
+     await deviceClient.CompleteAsync(receivedMessage);
+}
+```
 
 We recently utilized Azure and Xamarin to build MyDriving, an [open-source mobile application for iOS, Android, and Windows](https://azure.microsoft.com/en-us/campaigns/mydriving/) that collects car telemetry data from an OBD-II reader in the car, and reports that data to the cloud to gain valuable insights on routes and driving patterns. 
 
@@ -53,6 +81,14 @@ We recently utilized Azure and Xamarin to build MyDriving, an [open-source mobil
 [Microsoft Cognitive Services](https://www.microsoft.com/cognitive-services) provides a set of APIs that makes difficult things, like speech and emotion recognition, very easy to accomplish in just a few lines of code. These APIs work across all platforms, and because they are based on machine learning, continue to improve over time.
 
 SmartCoffee the [Bing Speech API](https://www.microsoft.com/cognitive-services/en-us/speech-api), one of the 20+ APIs exposed via Microsoft Cognitive Services to recognize speech input from an end user and convert it into an actionable text sequence. For example, when a user says "start making coffee", SmartCoffee sends this text to Microsoft Cognitive Services which converts the speech to text and sends back a JSON response containing the text spoken, as well as a confidence score. If the user spoke an actionable text sequence, SmartCoffee sends this message to Azure IoT Hub for processing by the coffee maker.
+
+```csharp
+var speechResult = await BingSpeechApi.SpeechToTextAsync();
+
+Console.WriteLine($"Name: {speechResult.Name}");
+Console.WriteLine($"Name ToLowerInvariant: {speechResult.Name.ToLowerInvariant()}");
+Console.WriteLine($"Confidence: {speechResult.Confidence}");
+```
 
 ## License
 Copyright (c) 2016 Pierce Boggan
