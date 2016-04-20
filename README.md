@@ -43,9 +43,11 @@ When the Raspberry Pi receives a cloud-to-device message from Azure IoT Hub, it 
 
 We recently utilized Azure and Xamarin to build MyDriving, an [open-source mobile application for iOS, Android, and Windows](https://azure.microsoft.com/en-us/campaigns/mydriving/) that collects car telemetry data from an OBD-II reader in the car, and reports that data to the cloud to gain valuable insights on routes and driving patterns. 
 
+<p align="center">
 <a href="https://www.youtube.com/watch?v=S7sSz556oKk">
 <img align="center" src="https://img.youtube.com/vi/S7sSz556oKk/0.jpg">
 </a>
+</p>
 
 ### Microsoft Cognitive Services
 What is Microsoft Cognitive Services? How do the mobile apps utilize it. Specifically what is Bing Speech API. How do we utilize it?
