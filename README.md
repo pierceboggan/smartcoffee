@@ -1,11 +1,6 @@
 # SmartCoffee
 Brew a perfect cup of coffee from iOS and Android apps using [Xamarin](https://www.xamarin.com/), [Azure IoT Hub](https://azure.microsoft.com/en-us/services/iot-hub/), and [Microsoft Cognitive Services](https://www.microsoft.com/cognitive-services/).
 
-[Insert Video]
-
-## Build Your Own
-Interested in building your own smart coffee maker, for free? Check out the [SmartCoffee mini-hack](https://github.com/pierceboggan/smartcoffee-minihack), which will take you step-by-step in creating your own smart coffee maker from scratch using Xamarin, Azure IoT Hub, and Microsoft Cognitive Services.
-
 ## Architecture Overview
 ### Mobile Apps
 SmartCoffee brings control over your coffee maker directly to you, wherever you are. To accomplish this, we built mobile apps for iOS and Android using Xamarin, which allows us to [build native mobile apps for iOS, Android, and Windows using C#](https://www.xamarin.com/). Xamarin allows us to share significant amounts of our code across multiple platforms, while still maintaining 100% access to the underlying platform APIs and building native user interfaces with iOS and Android designers. SmartCoffee utilizes Xamarin.Forms to take this a step further, allowing us to [build native user interfaces for iOS, Android, and Windows](https://www.xamarin.com/forms) from a single, shared C# or XAML codebase.
@@ -91,6 +86,9 @@ Console.WriteLine($"Name: {speechResult.Name}");
 Console.WriteLine($"Name ToLowerInvariant: {speechResult.Name.ToLowerInvariant()}");
 Console.WriteLine($"Confidence: {speechResult.Confidence}");
 ```
+
+## Terms of Usage
+Data submitted to any of the smarter-apps samples may be retained by Microsoft for service improvement purposes. For more information, see the [Microsoft Cognitive Services Preview Terms](http://research.microsoft.com/en-us/UM/legal/CognitiveServicesTerms20160330.htm) and the [Developer Code of Conduct for Microsoft Cognitive Services](http://research.microsoft.com/en-us/UM/legal/DeveloperCodeofConductforCognitiveServices.htm).
 
 ## License
 Copyright (c) 2016 Pierce Boggan
