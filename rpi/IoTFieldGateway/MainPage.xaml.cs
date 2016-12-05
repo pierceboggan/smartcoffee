@@ -14,30 +14,38 @@ namespace IoTFieldGateway
 {
     public sealed partial class MainPage : Page
     {
-        const string CONNECTION_STRING = "HostName=PierceHub.azure-devices.net;DeviceId=coffeeMaker;SharedAccessKey=UT39TIzywKkrrycqQeMS2j1DELBs9x3icM5x/Q2jb9I=";
+        /*--------------------------------
+          -----FILL IN YOUR KEYS HERE-----
+          --------------------------------*/
+        const string IOT_HUB_NAME = "SmartCoffee";
+        const string IOT_DEVICE_ID = "coffeeMaker";
+        const string SHARED_ACCESS_KEY = "w8rGIm6sLdhDCn6trM03eTt8yf106z5J+gFBNZ9Fkt4=";
 
-        private ObservableCollection<CloudMessage> Messages = new ObservableCollection<CloudMessage>();
-        private DeviceClient deviceClient;
+        // Constants
+        const int TIME_UNIT_SECOND = 1000;
+        const int TIME_UNIT_MINUTE = 60 * TIME_UNIT_SECOND;
+        const int TIME_UNIT_HOUR = 60 * TIME_UNIT_MINUTE;
 
-        private const int TIME_UNIT_SECOND = 1000;
-        private const int TIME_UNIT_MINUTE = 60 * TIME_UNIT_SECOND;
-        private const int TIME_UNIT_HOUR = 60 * TIME_UNIT_MINUTE;
+        const int COFFEE_MAKER_RELAY_PIN = 5;
+        const int COFFEE_MAKER_LED_PIN = 6;
 
-        private const int COFFEE_MAKER_RELAY_PIN = 5;
-        private const int COFFEE_MAKER_LED_PIN = 6;
+        // Raspberry Pi Interop
+        GpioController gpio;
+        GpioPin coffeeMakerRelay;
+        GpioPin coffeeMakerLED;
 
-        private bool coffeeRelayStatus = false;
-        private bool isListening = false;
+        // Raspberry Pi State
+        bool coffeeRelayStatus = false;
+        bool isListening = false;
 
-        private GpioController gpio;
+        Timer activeTimer = null;
+        int runningTime = 0;
+        int maxRunningTime = 30 * TIME_UNIT_MINUTE;
 
-        private GpioPin coffeeMakerRelay;
-        private GpioPin coffeeMakerLED;
-
-        private Timer activeTimer = null;
-
-        private int runningTime = 0;
-        private int maxRunningTime = 30 * TIME_UNIT_MINUTE;
+        // Azure IoT Hub
+        string CONNECTION_STRING = $"HostName={IOT_HUB_NAME}.azure-devices.net;DeviceId={IOT_DEVICE_ID};SharedAccessKey={SHARED_ACCESS_KEY}";
+        ObservableCollection<CloudMessage> Messages = new ObservableCollection<CloudMessage>();
+        DeviceClient deviceClient;
 
         public MainPage()
         {
@@ -111,11 +119,11 @@ namespace IoTFieldGateway
                 {
                     var message = Encoding.UTF8.GetString(receivedMessage.GetBytes());
 
-                    if (message.ToLower().Contains("turn coffee maker on"))
+                    if (message.ToLower().Contains("ON"))
                     {
                         // ToggleCoffeeMakerRelay();
                     }
-                    else if (message.ToLower().Contains("turn coffee maker off"))
+                    else if (message.ToLower().Contains("OFF"))
                     {
                         // ToggleCoffeeMakerRelay();
                     }
